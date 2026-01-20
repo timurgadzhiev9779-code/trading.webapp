@@ -245,53 +245,6 @@ async def get_signals(symbols: str = "BTC,ETH,BNB,SOL,XRP"):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/api/chart/{symbol}")
-async def get_chart_data(symbol: str, timeframe: str = "4h", limit: int = 100):
-    """
-    Получить данные для графика
-    
-    Args:
-        symbol: Символ монеты (BTC, ETH, etc)
-        timeframe: Таймфрейм (1h, 4h, 1d)
-        limit: Количество свечей
-    
-    Returns:
-        {
-            "candles": [
-                {
-                    "timestamp": str,
-                    "open": float,
-                    "high": float,
-                    "low": float,
-                    "close": float,
-                    "volume": float
-                }
-            ]
-        }
-    """
-    try:
-        from market_core import market
-        
-        df = market.get_candles(symbol, timeframe, limit)
-        
-        if df is None:
-            raise HTTPException(status_code=404, detail=f"No data for {symbol}")
-        
-        # Конвертируем DataFrame в список словарей
-        candles = []
-        for idx, row in df.iterrows():
-            candles.append({
-                "timestamp": idx.isoformat(),
-                "open": float(row['open']),
-                "high": float(row['high']),
-                "low": float(row['low']),
-                "close": float(row['close']),
-                "volume": float(row['volume'])
-            })
-        
-        return {"candles": candles}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/settings")
 async def get_settings():
