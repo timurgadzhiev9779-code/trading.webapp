@@ -140,5 +140,4 @@ class TradingAPI {
 }
 
 // Создаём глобальный экземпляр API
-const api = new TradingAPI();
-export default api;
+window.API = new TradingAPI();
