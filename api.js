@@ -3,7 +3,7 @@
  * Handles all communication with the backend
  */
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://trading-api-h3iq.onrender.com/api';
 
 class TradingAPI {
     constructor() {
