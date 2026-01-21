@@ -1,6 +1,4 @@
-// ==================== TRADING BOT V2.0 - APP.JS ====================
-
-import API from './api.js';
+// ==================== TRADING BOT - APP.JS ====================
 
 class TradingApp {
     constructor() {
