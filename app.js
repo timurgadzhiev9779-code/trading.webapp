@@ -84,6 +84,16 @@ class TradingApp {
                 statusDot.style.backgroundColor = portfolio.enabled ? '#0ECB81' : '#848E9C';
             }
             
+            // Обновляем toggle кнопку
+            const toggleBtn = document.getElementById('toggle-ai-btn');
+            if (toggleBtn) {
+                if (portfolio.enabled) {
+                    toggleBtn.classList.add('active');
+                } else {
+                    toggleBtn.classList.remove('active');
+                }
+            }
+            
             // Баланс
             const balanceEl = document.getElementById('balance-value');
             if (balanceEl) balanceEl.textContent = `$${portfolio.balance_usdt.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
@@ -504,14 +514,27 @@ class TradingApp {
     }
 
     async toggleAI() {
-        try {
-            const result = await window.API.toggleAI();
-            this.showNotification(result.message, 'success');
-            await this.loadOverview();
-        } catch (error) {
-            this.showError('Ошибка переключения AI');
+    try {
+        // Сразу переключаем визуально
+        const toggleBtn = document.getElementById('toggle-ai-btn');
+        
+        const result = await window.API.toggleAI();
+        
+        // Обновляем кнопку
+        if (toggleBtn) {
+            if (result.enabled) {
+                toggleBtn.classList.add('active');
+            } else {
+                toggleBtn.classList.remove('active');
+            }
         }
+        
+        this.showNotification(result.message, 'success');
+        await this.loadOverview();
+    } catch (error) {
+        this.showError('Ошибка переключения AI');
     }
+}
 
     startAutoRefresh() {
         this.refreshInterval = setInterval(() => {
