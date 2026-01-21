@@ -38,12 +38,16 @@ class TradingApp {
     }
 
     showLoading() {
-        document.getElementById('loading').style.display = 'flex';
-    }
+const loading = document.getElementById('loading-screen');
+if (loading) loading.style.display = 'flex';
+}
 
-    hideLoading() {
-        document.getElementById('loading').style.display = 'none';
-    }
+hideLoading() {
+const loading = document.getElementById('loading-screen');
+if (loading) loading.style.display = 'none';
+const app = document.getElementById('app');
+if (app) app.style.display = 'block';
+}
 
     async loadAllData() {
         try {
