@@ -366,6 +366,11 @@ body {
     background: white;
 }
 
+.toggle-btn.active .toggle-slider {
+    transform: translateX(24px);
+    background-color: #0ECB81;
+}
+
 /* ==================== BALANCE CARDS ==================== */
 .balance-grid {
     display: grid;
