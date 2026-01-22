@@ -561,4 +561,34 @@ if (diff < 60) return `${diff} сек назад`; if (diff < 3600) return `${Ma
     showNotification(message, type='info' ) { if (window.Telegram?.WebApp?.HapticFeedback) {
     window.Telegram.WebApp.HapticFeedback.notificationOccurred( type==='success' ? 'success' : type==='error' ? 'error'
     : 'warning' ); } alert(message); } showError(message) { this.showNotification(message, 'error' );
-    console.error(message); } } // Инициализация приложения window.app=new TradingApp();
+    console.error(message); } } // Инициализация приложения window.app=new TradingApp(); function openBuyModal(symbol) {
+    selectedSymbol=symbol; document.getElementById("buyTitle").innerText="Купить " + symbol;
+    document.getElementById("buyAmount").value="" ; document.getElementById("buyModal").classList.remove("hidden"); }
+    function closeBuyModal() { document.getElementById("buyModal").classList.add("hidden"); } async function
+    confirmBuy() { const amount=parseFloat(document.getElementById("buyAmount").value); if (!amount || amount <=0) {
+    alert("Введите сумму"); return; } try { const res=await fetch(`${API_BASE_URL}/api/trade/buy`, { method: "POST" ,
+    headers: {"Content-Type": "application/json" }, body: JSON.stringify({ symbol: selectedSymbol, amount_usd: amount })
+    }); const data=await res.json(); if (data.status==="success" ) { alert("✅ Куплено " + selectedSymbol);
+      closeBuyModal();
+      loadPortfolio();
+    } else {
+      alert(" ❌ " + data.message);
+    }
+
+  } catch (e) {
+    alert(" Ошибка соединения с API"); } } function openBuyModal(symbol) { selectedSymbol=symbol;
+    document.getElementById("buyTitle").innerText="Купить " + symbol; document.getElementById("buyAmount").value="" ;
+    document.getElementById("buyModal").classList.remove("hidden"); } function closeBuyModal() {
+    document.getElementById("buyModal").classList.add("hidden"); } async function confirmBuy() { const
+    amount=parseFloat(document.getElementById("buyAmount").value); if (!amount || amount <=0) { alert("Введите сумму");
+    return; } try { const res=await fetch(`${API_BASE_URL}/api/trade/buy`, { method: "POST" , headers:
+    {"Content-Type": "application/json" }, body: JSON.stringify({ symbol: selectedSymbol, amount_usd: amount }) });
+    const data=await res.json(); if (data.status==="success" ) { alert("✅ Куплено " + selectedSymbol);
+      closeBuyModal();
+      loadPortfolio();
+    } else {
+      alert(" ❌ " + data.message);
+    }
+
+  } catch (e) {
+    alert(" Ошибка соединения с API"); } }
