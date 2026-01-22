@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Trading Bot Dashboard</title>
-    
+
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- LOADING SCREEN -->
     <div id="loading-screen" class="loading-screen">
@@ -23,7 +25,7 @@
 
     <!-- MAIN APP -->
     <div id="app" class="app" style="display: none;">
-        
+
         <!-- HEADER -->
         <header class="header">
             <div class="header-content">
@@ -33,8 +35,10 @@
                 </h1>
                 <div class="header-actions">
                     <button id="refresh-btn" class="icon-btn" title="Обновить">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
                         </svg>
                     </button>
                 </div>
@@ -45,30 +49,30 @@
         <nav class="nav-tabs">
             <button class="nav-tab active" data-tab="overview">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="7" height="7"/>
-                    <rect x="14" y="3" width="7" height="7"/>
-                    <rect x="14" y="14" width="7" height="7"/>
-                    <rect x="3" y="14" width="7" height="7"/>
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
                 </svg>
                 <span>Обзор</span>
             </button>
             <button class="nav-tab" data-tab="portfolio">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
                 <span>Портфель</span>
             </button>
             <button class="nav-tab" data-tab="signals">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                 </svg>
                 <span>Сигналы</span>
             </button>
             <button class="nav-tab" data-tab="history">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
                 </svg>
                 <span>История</span>
             </button>
@@ -76,10 +80,10 @@
 
         <!-- CONTENT -->
         <main class="content">
-            
+
             <!-- TAB: OVERVIEW -->
             <div id="tab-overview" class="tab-content active">
-                
+
                 <!-- AI STATUS CARD -->
                 <div class="card ai-status-card">
                     <div class="ai-status-header">
@@ -119,9 +123,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                                <polyline points="17 6 23 6 23 12"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                                <polyline points="17 6 23 6 23 12" />
                             </svg>
                             Equity Curve
                         </h3>
@@ -206,7 +211,7 @@
     <!-- Scripts -->
     <script src="api.js"></script>
     <script src="app.js"></script>
-    
+
     <!-- BUY MODAL -->
     <div id="buyModal" class="modal hidden">
         <div class="modal-box">
@@ -218,9 +223,18 @@
             </div>
         </div>
     </div>
-    
+    <!-- BUY MODAL -->
+    <div id="buyModal" class="modal hidden">
+        <div class="modal-box">
+            <h2 id="buyTitle">Купить</h2>
+            <input id="buyAmount" type="number" placeholder="Сумма в USDT" />
+            <div class="modal-actions">
+                <button onclick="confirmBuy()">✅ Купить</button>
+                <button onclick="closeBuyModal()">❌ Отмена</button>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
-
-
-
