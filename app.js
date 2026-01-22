@@ -539,7 +539,7 @@ class TradingApp {
     startAutoRefresh() {
         this.refreshInterval = setInterval(() => {
             this.loadTabData(this.currentTab);
-        }, 30000);
+        }, 10000);  // Обновление каждые 10 секунд
     }
 
     formatTime(timestamp) {
