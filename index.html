@@ -206,7 +206,21 @@
     <!-- Scripts -->
     <script src="api.js"></script>
     <script src="app.js"></script>
+    
+    <!-- BUY MODAL -->
+    <div id="buyModal" class="modal hidden">
+        <div class="modal-box">
+            <h2 id="buyTitle">Купить</h2>
+            <input id="buyAmount" type="number" placeholder="Сумма в USDT" />
+            <div class="modal-actions">
+                <button onclick="confirmBuy()">✅ Купить</button>
+                <button onclick="closeBuyModal()">❌ Отмена</button>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
+
 
 
