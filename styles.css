@@ -333,42 +333,37 @@ body {
     margin-top: var(--spacing-xs);
 }
 
-/* ==================== TOGGLE BUTTON ==================== */
+/* ==================== TOGGLE BUTTON (iOS STYLE) ==================== */
 .toggle-btn {
-    width: 60px;
-    height: 32px;
+    width: 51px;
+    height: 31px;
+    background: #E5E5EA;
     border-radius: 16px;
-    background: var(--bg-tertiary);
-    border: 2px solid var(--border-color);
-    cursor: pointer;
     position: relative;
-    transition: all var(--transition-normal);
-}
-
-.toggle-slider {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--text-tertiary);
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    transition: all var(--transition-normal);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0;
 }
 
 .toggle-btn.active {
-    background: var(--accent-green);
-    border-color: var(--accent-green);
+    background: #34C759;
 }
 
-.toggle-btn.active .toggle-slider {
-    left: 30px;
+.toggle-slider {
+    width: 27px;
+    height: 27px;
     background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-btn.active .toggle-slider {
-    transform: translateX(24px);
-    background-color: #0ECB81;
+    transform: translateX(20px);
 }
 
 /* ==================== BALANCE CARDS ==================== */
