@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Trading Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">AI Trading</span>
+            </div>
+            <button class="refresh-btn" id="refresh-btn">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C12.0711 2.5 13.9462 3.39289 15.2678 4.82843M15.2678 4.82843L17.5 2.5M15.2678 4.82843L12.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <button class="nav-btn active" data-tab="overview">
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span class="nav-text">Обзор</span>
+        </button>
+        
+        <button class="nav-btn" data-tab="portfolio">
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nav-text">Портфель</span>
+        </button>
+        
+        <button class="nav-btn" data-tab="signals">
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nav-text">Сигналы</span>
+        </button>
+        
+        <button class="nav-btn" data-tab="history">
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nav-text">История</span>
+        </button>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="content">
+        
+        <!-- TAB: OVERVIEW -->
+        <div id="tab-overview" class="tab-content active">
+            
+            <!-- AI STATUS CARD -->
+            <div class="card ai-status-card">
+                <div class="ai-status-header">
+                    <div class="ai-status-info">
+                        <div class="ai-status-indicator" id="ai-status-indicator">
+                            <div class="status-dot"></div>
+                            <span class="status-text">AI Выключен</span>
+                        </div>
+                        <div class="ai-status-subtitle">Автоматическая торговля</div>
+                    </div>
+                    <button id="toggle-ai-btn" class="toggle-btn">
+                        <div class="toggle-slider"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- BALANCE CARDS -->
+            <div class="balance-grid">
+                <div class="balance-card">
+                    <div class="balance-label">Баланс USDT</div>
+                    <div class="balance-value" id="balance-value">$10,000.00</div>
+                    <div class="balance-change">Свободно</div>
+                </div>
+                <div class="balance-card">
+                    <div class="balance-label">В позициях</div>
+                    <div class="balance-value" id="positions-value">$0.00</div>
+                    <div class="balance-change" id="positions-count">0 позиций</div>
+                </div>
+                <div class="balance-card balance-card-highlight">
+                    <div class="balance-label">Общий капитал</div>
+                    <div class="balance-value" id="total-value">$10,000.00</div>
+                    <div class="balance-change" id="total-pnl">$0.00 (0.00%)</div>
+                </div>
+            </div>
+
+            <!-- EQUITY CHART -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📈 Equity Curve</h3>
+                    <div class="chart-period-btns">
+                        <button class="period-btn active" data-period="7d">7D</button>
+                        <button class="period-btn" data-period="30d">30D</button>
+                        <button class="period-btn" data-period="all">All</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="equity-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- STATS GRID -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Винрейт</div>
+                        <div class="stat-value" id="stat-winrate">0%</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Всего сделок</div>
+                        <div class="stat-value" id="stat-total-trades">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Прибыльных</div>
+                        <div class="stat-value" id="stat-wins">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">❌</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Убыточных</div>
+                        <div class="stat-value" id="stat-losses">0</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB: PORTFOLIO -->
+        <div id="tab-portfolio" class="tab-content">
+            <div id="portfolio-list"></div>
+        </div>
+
+        <!-- TAB: SIGNALS -->
+        <div id="tab-signals" class="tab-content">
+            <div id="signals-list"></div>
+        </div>
+
+        <!-- TAB: HISTORY -->
+        <div id="tab-history" class="tab-content">
+            <div id="history-list"></div>
+        </div>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
