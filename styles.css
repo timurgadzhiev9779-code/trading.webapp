@@ -1,0 +1,530 @@
+/* ==================== VARIABLES ==================== */
+:root {
+    --bg-primary: #0B0E11;
+    --bg-secondary: #161A1E;
+    --bg-tertiary: #1E2329;
+    --text-primary: #EAECEF;
+    --text-secondary: #848E9C;
+    --accent-green: #0ECB81;
+    --accent-red: #F6465D;
+    --accent-yellow: #F0B90B;
+    --border-color: #2B3139;
+}
+
+/* ==================== RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.refresh-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.refresh-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* ==================== NAVIGATION ==================== */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    transition: all 0.3s;
+}
+
+.nav-btn.active {
+    color: var(--accent-yellow);
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-text {
+    font-size: 12px;
+}
+
+/* ==================== CONTENT ==================== */
+.content {
+    margin-top: 72px;
+    padding: 16px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==================== CARDS ==================== */
+.card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* ==================== AI STATUS ==================== */
+.ai-status-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+}
+
+.ai-status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #848E9C;
+}
+
+.status-text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ai-status-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* ==================== TOGGLE BUTTON (iOS STYLE) ==================== */
+.toggle-btn {
+    width: 51px;
+    height: 31px;
+    background: #E5E5EA;
+    border-radius: 16px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0;
+}
+
+.toggle-btn.active {
+    background: #34C759;
+}
+
+.toggle-slider {
+    width: 27px;
+    height: 27px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn.active .toggle-slider {
+    transform: translateX(20px);
+}
+
+/* ==================== BALANCE CARDS ==================== */
+.balance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.balance-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.balance-card-highlight {
+    border-color: var(--accent-yellow);
+}
+
+.balance-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.balance-value {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.balance-change {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.balance-change.profit {
+    color: var(--accent-green);
+}
+
+.balance-change.loss {
+    color: var(--accent-red);
+}
+
+/* ==================== CHART ==================== */
+.chart-container {
+    position: relative;
+    height: 200px;
+}
+
+.chart-period-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.period-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.period-btn.active {
+    background: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: var(--bg-primary);
+}
+
+/* ==================== STATS GRID ==================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-icon {
+    font-size: 24px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ==================== POSITION CARD ==================== */
+.position-card,
+.signal-card,
+.history-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.position-header,
+.signal-header,
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.position-symbol,
+.signal-symbol,
+.history-symbol {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.coin-icon {
+    font-size: 20px;
+}
+
+.position-pnl,
+.history-pnl {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.position-pnl.profit,
+.history-pnl.profit {
+    color: var(--accent-green);
+}
+
+.position-pnl.loss,
+.history-pnl.loss {
+    color: var(--accent-red);
+}
+
+.position-details,
+.signal-details,
+.history-details {
+    margin-bottom: 12px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.detail-value {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.detail-value.profit {
+    color: var(--accent-green);
+}
+
+.detail-value.loss {
+    color: var(--accent-red);
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.btn-primary {
+    background: var(--accent-green);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0db574;
+}
+
+.btn-danger {
+    background: var(--accent-red);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #e0405b;
+}
+
+.position-actions,
+.signal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ==================== SIGNAL BADGES ==================== */
+.signal-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.signal-card.signal-buy {
+    border-color: var(--accent-green);
+}
+
+.signal-card.signal-buy .signal-badge {
+    background: rgba(14, 203, 129, 0.2);
+    color: var(--accent-green);
+}
+
+.signal-card.signal-sell {
+    border-color: var(--accent-red);
+}
+
+.signal-card.signal-sell .signal-badge {
+    background: rgba(246, 70, 93, 0.2);
+    color: var(--accent-red);
+}
+
+.signal-card.signal-hold {
+    border-color: var(--accent-yellow);
+}
+
+.signal-card.signal-hold .signal-badge {
+    background: rgba(240, 185, 11, 0.2);
+    color: var(--accent-yellow);
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.empty-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.empty-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh-btn:active {
+    animation: spin 0.5s ease;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 480px) {
+    .balance-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
