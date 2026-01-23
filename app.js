@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = 'https://elisa-axiological-gully.ngrok-free.dev';
 
 // ==================== TRADING BOT V2.0 - APP.JS ====================
 
