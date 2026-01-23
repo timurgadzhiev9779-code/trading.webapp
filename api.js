@@ -30,7 +30,8 @@ class TradingAPI {
         const url = `${this.baseURL}${endpoint}`;
         
         const headers = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json
+            'ngrok-skip-browser-warning': 'true',
             ...(this.initData && { 'X-Telegram-Init-Data': this.initData }),
             ...options.headers
         };
