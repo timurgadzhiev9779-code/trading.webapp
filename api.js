@@ -3,7 +3,7 @@
  * Handles all communication with the backend
  */
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://elisa-axiological-gully.ngrok-free.dev/api';
 
 class TradingAPI {
     constructor() {
